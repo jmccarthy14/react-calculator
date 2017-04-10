@@ -1,12 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 import logo from './logo.svg';
 import './Calculator.css';
-import KeyPad from './KeyPad.js';
+import DigitKeyPad from './DigitKeyPad.js';
+import OperatorKeyPad from './OperatorKeyPad.js';
+import {newDigit} from '../actions.js';
 
 class Calculator extends Component {
     static propTypes = {
-	value: PropTypes.number.isRequired
-    };
+	store: PropTypes.object.isRequired
+    }
+
+    constructor(props) {
+	super(props);
+	this.store = props.store;
+	this.state = this.store.getState();
+	console.log(newDigit);
+    }
+
+    onDigitClick(digitValue, store) {
+	store.dispatch(
+	    newDigit(digitValue)
+	);
+
+    }
   render() {
     return (
       <div className="App">
@@ -15,10 +31,11 @@ class Calculator extends Component {
           <h2>Welcome to your first React app Joseph!</h2>
 	  <h3 className="App-subheader">(Didnt you want to fucking hate it)</h3>
         </div>
-        <p className="App-intro">
-	    <div className="Calc-display">{this.props.value}</div>
-	    <KeyPad />
-        </p>
+        <span className="App-intro">
+	    <div className="Calc-display">{this.store.getState().displayValue}</div>
+	    <DigitKeyPad className='DigitKeyPad' digitClickHandler={(digit) => this.onDigitClick(digit, this.store)}/>
+	    <OperatorKeyPad className='OperatorKeyPad' operatorClickHandler={(operator) => this.onOperatorClick(operator, this.store)} />
+        </span>
       </div>
     );
   }

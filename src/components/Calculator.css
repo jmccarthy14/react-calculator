@@ -35,3 +35,14 @@
     text-align: center;
     font-size: 3em;
 }
+
+/* Keypad */
+
+.DigitKeyPad {
+    width: 70%;
+}
+
+.OperatorKeyPad {
+    width:30%;
+    display: inline-block;
+}

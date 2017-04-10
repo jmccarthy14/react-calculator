@@ -8,7 +8,7 @@ import './index.css';
 
 const store = createStore(calculator);
 const render = () => ReactDOM.render(
-    <Calculator value={store.getState().total}/>,
+    <Calculator store={store}/>,
     document.getElementById('root')
 );
 

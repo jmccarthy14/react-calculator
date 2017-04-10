@@ -1,0 +1,10 @@
+
+export const NEW_DIGIT = 'NEW_DIGIT';
+export default function newDigit(digit) {
+    return {
+	type: NEW_DIGIT,
+	digit: digit
+    };
+}
+
+
